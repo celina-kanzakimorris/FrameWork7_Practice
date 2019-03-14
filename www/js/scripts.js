@@ -8,6 +8,7 @@ var app = new Framework7({
 	]
 })
 
+
 var mainView = app.views.create('.view-main');
 
 document.addEventListener("deviceready", init, false);
@@ -15,25 +16,44 @@ document.addEventListener("deviceready", init, false);
 function init() {
         //camera code goes here
 
-    $("#takePic").on("click", function () {
+    $("#takePic").on("click", takePic);
+
+    function takePic() {
         console.log("user tapped")
         navigator.camera.getPicture(cameraSuccess, cameraFail, cameraOptions);
-    })
+    }
 
     var cameraOptions = {
         //number range 0-100, default is 50
-        quality: 80,
+        quality: 80
         //default is back
-        saveToPhotoAlbum: true
+        // saveToPhotoAlbum: true
     }
    
-    function cameraSuccess(imageURI) {
+    function cameraSuccess(imageData) {
         console.log("great pic!");
-        $("#takePic").after("<img src='" + imageURI + "'>'");
+        //$("#takePic").append("<img src='" + imageData + "'>");
+          loadImage(imageData, img => {
+            image(img, 0, 0);
+        });
     }
 
 
     function cameraFail(message) {
         alert("failure due to: " + message);
     }
+
+    // $("gallery").append("<img src='"+imgURL);
+}
+
+
+
+function preload(){
+
+}
+
+function setup(){
+    let canvas = createCanvas(windowWidth, windowHeight);
+    canvas.parent('blah');
+
 }

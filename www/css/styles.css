@@ -1,3 +1,7 @@
 img{
     width: 100%;
 }
+
+.md .button.button-fill{
+	background-color: teal;
+}
